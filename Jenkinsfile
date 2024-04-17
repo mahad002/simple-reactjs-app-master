@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from GitHub
-                git 'https://github.com/mahad002/simple-reactjs-app-master.git'
+                git branch: 'main', url:'https://github.com/mahad002/simple-reactjs-app-master'
             }
         }
         
