@@ -9,24 +9,31 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
+        stage('Dependency Installation') {
             steps {
                 // Install Node.js dependencies
                 bat 'npm install'
             }
         }
         
-        stage('Build') {
-            steps {
-                // Build the project
-                bat 'npm run build'
-            }
-        }
-        
-        stage('Docker Build') {
+        stage('Build Docker Image') {
             steps {
                 // Build Docker image
                 bat 'docker build -t simple-reactjs-app-master .'
+            }
+        }
+        
+        stage('Run Docker Image') {
+            steps {
+                // Run Docker image
+                bat 'docker run -p 3000:3000 simple-reactjs-app-master'
+            }
+        }
+        
+        stage('Push Docker Image') {
+            steps {
+                // Push Docker image to Docker Hub
+                bat 'docker push simple-reactjs-app-master'
             }
         }
     }
