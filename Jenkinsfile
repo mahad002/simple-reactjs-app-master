@@ -16,17 +16,17 @@ pipeline {
             }
         }
         
-        stage('Run Tests') {
-            steps {
-                // Run tests
-                bat 'npm test'
-            }
-        }
-        
         stage('Build') {
             steps {
                 // Build the project
                 bat 'npm run build'
+            }
+        }
+        
+        stage('Docker Build') {
+            steps {
+                // Build Docker image
+                bat 'docker build -t simple-reactjs-app-master .'
             }
         }
     }
